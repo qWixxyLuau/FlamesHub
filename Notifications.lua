@@ -1,3 +1,5 @@
+--_G.NotifySettings = {["Title"] = "success!",["Description"] = "jopapopa!",["Time"] = 10,["Color"] = Color3.fromRGB(148,148,148)}
+
 if not game.CoreGui:FindFirstChild("NotificationsByFlamesHub") then
 
 	local G2L = {};
@@ -139,9 +141,14 @@ if not game.CoreGui:FindFirstChild("NotificationsByFlamesHub") then
 			end)
 		end
 	end)
-	
+
 	return G2L["1"], require;
 end
 
 local clone = game.CoreGui:FindFirstChild("NotificationsByFlamesHub"):FindFirstChild("Notifications"):FindFirstChild("Template"):Clone()
 clone.Parent = game.CoreGui:FindFirstChild("NotificationsByFlamesHub").Notifications
+clone.UIStroke.Color = _G.NotifySettings["Color"]
+clone["_"].BackgroundColor3 = _G.NotifySettings["Color"]
+clone.Description.TextColor3 = _G.NotifySettings["Color"]
+clone.Title.TextColor3 = _G.NotifySettings["Color"]
+clone.Proccess.Frame.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.000, _G.NotifySettings["Color"]),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(27, 27, 27))};
