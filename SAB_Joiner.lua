@@ -3,6 +3,8 @@ game.Players.LocalPlayer.CharacterAdded:Wait()
 
 local StarterGui = game.CoreGui
 local found = false
+local HttpService = game:GetService("HttpService")
+local TeleportService = game:GetService("TeleportService")
 
 local ThingsToCreate = {
 	["AutoJoiner"] = {
@@ -253,6 +255,22 @@ while task.wait(1) do
 	if _G.JoinerEnabled == true then
 		queue_on_teleport("_G.JoinerEnabled = ".."'"..tostring(_G.JoinerEnabled).."'".." _G.Webhook = ".."'"..tostring(_G.Webhook).."'".." _G.Rarity = ".."'"..(_G.Rarity or "Secret").."'".." loadstring(game:HttpGet('https://raw.githubusercontent.com/qWixxyLuau/FlamesHub/refs/heads/main/SAB_Joiner.lua'))()")
 
-		game:GetService("TeleportService"):Teleport(game.PlaceId,game.Players.LocalPlayer)
+		local servers = {}
+		local req = game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true")
+		local body = HttpService:JSONDecode(req)
+
+		if body and body.data then
+			for i, v in next, body.data do
+				if type(v) == "table" and tonumber(v.playing) and tonumber(v.maxPlayers) and v.playing < v.maxPlayers and v.id ~= JobId then
+					table.insert(servers, 1, v.id)
+				end
+			end
+		end
+
+		if #servers > 0 then
+			TeleportService:TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)], game.Players.LocalPlayer)
+		else
+			return warn("Couldn't find a server.")
+		end
 	end
 end
