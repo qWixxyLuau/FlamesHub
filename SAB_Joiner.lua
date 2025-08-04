@@ -274,6 +274,7 @@ for _, rarity in workspace:GetDescendants() do
 end
 
 if found and _G.KeepTeleporting == false then
+	print("Destroying Menu")
 	gui:Destroy()
 	return
 end
