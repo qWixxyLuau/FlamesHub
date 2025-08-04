@@ -1,3 +1,10 @@
+--[[
+_G.Webhook = "" --Put your webhook here
+_G.Rarity = "" --Secret, Brainrot God or something else
+_G.KeepTeleporting = true --Keep teleporting after webhook notify
+]]
+
+
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
 
 local StarterGui = game.CoreGui
@@ -266,7 +273,7 @@ for _, rarity in workspace:GetDescendants() do
 	end
 end
 
-if found then
+if found and _G.KeepTeleporting == false then
 	gui:Destroy()
 	return
 end
