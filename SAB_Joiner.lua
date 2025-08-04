@@ -7,9 +7,8 @@ _G.KeepTeleporting = true --Keep teleporting after webhook notify
 
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
 
-local StarterGui = game.CoreGui
 
-if StarterGui:FindFirstChild("AutoJoiner") then
+if game.CoreGui:FindFirstChild("AutoJoiner") then
 	return
 end
 
@@ -174,7 +173,7 @@ local function createGui(data, parent)
 end
 
 for _, data in pairs(ThingsToCreate) do
-	createGui(data, StarterGui)
+	createGui(data, game.CoreGui)
 end
 
 function SendMessageEMBED(url, embed)
@@ -260,7 +259,7 @@ local embed = {
 	}
 }
 
-local gui = StarterGui:WaitForChild("AutoJoiner")
+local gui = game.CoreGui:WaitForChild("AutoJoiner")
 local button = gui:WaitForChild("TextButton")
 
 local tab = {
@@ -291,7 +290,7 @@ end
 
 if found and _G.KeepTeleporting == false then
 	print("Destroying Menu")
-	gui:Destroy()
+	game.CoreGui:WaitForChild("AutoJoiner"):Destroy()
 	return
 end
 
