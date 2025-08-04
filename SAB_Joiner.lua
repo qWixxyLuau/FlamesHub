@@ -298,7 +298,7 @@ while wait(1) do
 	button.BackgroundColor3 = tab[tostring(_G.JoinerEnabled)]
 
 	if _G.JoinerEnabled == true then
-		queue_on_teleport("_G.JoinerEnabled = "..(_G.JoinerEnabled or false).." _G.Webhook = ".."'"..tostring(_G.Webhook).."'".." _G.Rarity = ".."'"..(_G.Rarity or "Secret").."'".." loadstring(game:HttpGet('https://raw.githubusercontent.com/qWixxyLuau/FlamesHub/refs/heads/main/SAB_Joiner.lua'))()")
+		queue_on_teleport(("_G.JoinerEnabled = "..(tostring(_G.JoinerEnabled) or false).." _G.Webhook = ".."'"..tostring(_G.Webhook).."'".." _G.Rarity = ".."'"..(_G.Rarity or "Secret").."'".." loadstring(game:HttpGet('https://raw.githubusercontent.com/qWixxyLuau/FlamesHub/refs/heads/main/SAB_Joiner.lua'))()"))
 		print("hop loop")
 		hop()
 	end
