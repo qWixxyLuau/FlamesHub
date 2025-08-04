@@ -1,4 +1,3 @@
-
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
 
 local StarterGui = game.CoreGui
@@ -197,6 +196,8 @@ function SendMessageEMBED(url, embed)
 end
 
 local function hop()
+	print("ServerHop Working")
+	
 	local servers = {}
 	local req = game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true")
 	local body = HttpService:JSONDecode(req)
@@ -275,7 +276,7 @@ while task.wait(1) do
 
 	if _G.JoinerEnabled == true then
 		queue_on_teleport("_G.JoinerEnabled = ".."'"..tostring(_G.JoinerEnabled).."'".." _G.Webhook = ".."'"..tostring(_G.Webhook).."'".." _G.Rarity = ".."'"..(_G.Rarity or "Secret").."'".." loadstring(game:HttpGet('https://raw.githubusercontent.com/qWixxyLuau/FlamesHub/refs/heads/main/SAB_Joiner.lua'))()")
-
+		print("hop loop")
 		hop()
 	end
 end
