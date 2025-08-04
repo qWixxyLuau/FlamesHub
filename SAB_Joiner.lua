@@ -8,6 +8,11 @@ _G.KeepTeleporting = true --Keep teleporting after webhook notify
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
 
 local StarterGui = game.CoreGui
+
+if StarterGui:FindFirstChild("AutoJoiner") then
+	return
+end
+
 local found = false
 local HttpService = game:GetService("HttpService")
 local TeleportService = game:GetService("TeleportService")
