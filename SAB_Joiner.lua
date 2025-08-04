@@ -292,11 +292,10 @@ end
 if found and _G.KeepTeleporting == false then
 	print("Destroying Menu")
 	gui:Destroy()
+	return
 end
 
-while task.wait(1) do
-	if found == true and _G.KeepTeleporting == false then break end
-	
+game:GetService("RunService").RenderStepped:Connect(function()
 	button.BackgroundColor3 = tab[tostring(_G.JoinerEnabled)]
 
 	if _G.JoinerEnabled == true then
@@ -304,4 +303,4 @@ while task.wait(1) do
 		print("hop loop")
 		hop()
 	end
-end
+end)
