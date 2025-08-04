@@ -211,7 +211,18 @@ local function hop()
 	print("ServerHop Working")
 	
 	local servers = {}
-	local req = game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true")
+	local success, req = pcall(function()
+		return game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Desc&limit=100&excludeFullGames=true")
+	end)
+	
+	if not success then
+		warn("Error. Trying Again")
+		
+		task.wait(10)
+		hop()
+		return
+	end
+	
 	local body = HttpService:JSONDecode(req)
 
 	if body and body.data then
