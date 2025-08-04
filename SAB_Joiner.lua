@@ -1,5 +1,5 @@
-game.Loaded:Wait()
-game.Players.LocalPlayer.CharacterAdded:Wait()
+
+repeat wait() until game:IsLoaded() and game.Players.LocalPlayer and game.Players.LocalPlayer.Character
 
 local StarterGui = game.CoreGui
 local found = false
