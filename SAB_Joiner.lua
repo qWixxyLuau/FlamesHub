@@ -1,3 +1,6 @@
+game.Loaded:Wait()
+game.Players.LocalPlayer.CharacterAdded:Wait()
+
 local StarterGui = game.CoreGui
 local found = false
 
