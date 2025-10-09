@@ -3551,7 +3551,7 @@ function Library:CreateWindow(...)
                     CursorOutline.PointB = Cursor.PointB;
                     CursorOutline.PointC = Cursor.PointC;
 
-                    RenderStepped:Wait();
+                    task.wait();
                 end;
 
                 InputService.MouseIconEnabled = State;
